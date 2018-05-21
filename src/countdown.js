@@ -15,20 +15,20 @@
       var container = timer.closest(".timer_container");
       if (container.length == 0) { container = timer; }
       var remaining = timer.data("remaining");
-      if(remaining)
-      {
-         if (remaining>0) {
-            remaining = remaining - 1;
-            timer.html(formatTime(remaining));
-         }
-         if (remaining<300)
-         {
-            container.css("background-color","red");
-         } else if (remaining< 120)
-         {
-            container.css("background-color", "yellow");
-         }
-      }
+       if (remaining) {
+           if (remaining > 0) {
+               remaining = remaining - 1;
+               timer.html(formatTime(remaining));
+           }
+           if (remaining < 300) {
+               container.css("background-color", "red");
+           } else if (remaining < 120) {
+               container.css("background-color", "yellow");
+           }
+       } else {
+           container.css("background-color", "red");
+           timer.html("TIME EXPIRED");
+       }
 
       timer.data("remaining", remaining);
    }
