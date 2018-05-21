@@ -17,6 +17,10 @@ app.get('/', function(req, res){
    res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
+app.use('/scripts', express.static(path.join(__dirname, '../node_modules')));
+
+app.use(express.static(path.join(__dirname, "../src")));
+
 app.listen(port, function(err){
    if (err) {
       console.log(err);

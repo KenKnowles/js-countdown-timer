@@ -5,7 +5,57 @@
    </head>
    <body>
       <h1>Hello World!?</h1>
-      <div class="timer"></div>
+      <div class="timer_container" >Time remaining: <span class="timer" data-initial-time="50"></span></div>
+      <div >Time remaining: <span class="timer" data-initial-time="90"></span></div>
+      <p id="message"></p>
+      <p id="message2"></p>
+      <p id="clock"></p>
+      <script src="/scripts/jquery/dist/jquery.min.js" type="text/javascript"></script>
+      <script src="countdown.js"></script>
       <script src="bundle.js"></script>
+      <script>
+         // $(".timer").html("Hello again");
+         $(".timer").countdown();
+
+         if ($(".timer").data("remaining")) {
+            $("#message").html("There is a value for data and it is " + $(".timer").data("remaining"));
+         }
+
+
+      </script>
+          <script>
+               var timer = null;
+               function formatTime(ms)
+               {
+                   var result = "";
+                   var remaining = ms;
+                   var sec = 1000;
+                   var min = sec * 60;
+                   var hour = min * 60;
+                   var day = hour * 24;
+
+                   var days = Math.trunc(remaining / day);
+                   remaining = remaining - (days * day);
+
+                   var hours = Math.trunc(remaining / hour);
+                   remaining -= (hours * hour);
+
+                   var mins = Math.trunc(remaining / min);
+                   remaining -= (mins * min);
+
+                   var secs = Math.trunc(remaining / sec);
+
+                   result = days.toFixed(0) + ":" + hours.toFixed(0) + ":" + mins.toFixed(0) + ":" + secs.toFixed(0);
+                   return result;
+
+               }
+               function calc_time() {
+                   var dt = new Date().getTime();
+                   $("#clock").html(formatTime(dt));
+
+               }
+
+               timer = setInterval(calc_time, 1000);
+           </script>
    </body>
 </html>
